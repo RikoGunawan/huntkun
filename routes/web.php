@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,10 +15,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
+// Authentication Routes
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Home Route
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
+// User Management Routes
+Route::resource('users', UserController::class);
+
+// Minecraft Routes
+Route::view('/minecraft', 'minecraft.index')->name('minecraft.index');
+Route::view('/minecraft/story', 'minecraft.story')->name('minecraft.story');
+Route::view('/minecraft/minigame', 'minecraft.minigame')->name('minecraft.minigame');
+
+// Doomsday Routes
+Route::view('/doomsday', 'doomsday.index')->name('doomsday.index');
+
+// About Page Route
+Route::view('/about', 'about')->name('about.index');

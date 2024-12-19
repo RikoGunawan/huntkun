@@ -1,0 +1,506 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;600&display=swap');
+@import url('https://fonts.bunny.net/css?family=Nunito');
+
+/* ===== Global Styles ===== */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Titillium Web', sans-serif; /* Font default untuk seluruh halaman */
+    font-size: 1rem; /* Default ukuran teks untuk body */
+    background-image: url('../images/huntkun_background.png');
+    background-size: cover; /* Menutupi seluruh halaman */
+    background-position: center; /* Posisi gambar di tengah */
+    background-repeat: no-repeat; /* Tidak mengulang gambar */
+    background-attachment: fixed; /* Background tetap saat scroll */
+    display: flex;
+    flex-direction: column;
+}
+
+/* ===== Typography ===== */
+h1 {
+    font-family: 'Titillium Web', sans-serif;  /* Menetapkan font */
+    font-weight: bold;  /* Menetapkan ketebalan font */
+    font-size: 4rem;  /* Ukuran font yang besar untuk h1 */
+    line-height: 1.2;  /* Mengatur jarak antar baris */
+}
+
+h2 {
+    font-family: 'Titillium Web', sans-serif;  /* Menetapkan font */
+    font-weight: bold;  /* Menetapkan ketebalan font */
+    font-size: 4rem;  /* Ukuran font lebih kecil dari h1 */
+    line-height: 1.2;  /* Mengatur jarak antar baris */
+}
+
+p {
+    font-family: 'Titillium Web', sans-serif;
+    font-size: 1.125rem; /* Ukuran teks lebih besar untuk paragraf */
+    line-height: 1.6; /* Jarak antar baris untuk kenyamanan baca */
+}
+
+.font-nunito {
+    font-family: 'Nunito', sans-serif;
+}
+
+.font-sans-serif {
+    font-family: 'Microsoft Sans Serif', sans-serif;
+}
+
+/* ===== Layout Helpers ===== */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+#app {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+#banner {
+    /* background-image: url('../images/banner.jpg'); */
+    background-size: cover;
+    background-position: center;
+    height: 30vh;
+    text-align: center;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0;
+}
+
+/* ===== Navbar, Main, Footer ===== */
+.custom-navbar {
+    position: sticky;
+    top: 20px; /* Jarak dari atas halaman */
+    width: 90%;
+    margin-right: auto;
+    margin-bottom: 40px;
+    margin-left: auto;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    padding: 10px 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000; /* Pastikan navbar berada di atas konten */
+}
+
+.navbar-links {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.navbar-left {
+    flex-grow: 1;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.navbar-right {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 15px;
+    margin-left: auto;
+}
+
+.navbar-brand {
+    flex-shrink: 0;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+    margin-right: 30px;
+}
+
+.navbar-links li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    padding: 10px 15px;
+    border-radius: 8px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.navbar-links li a.active,
+.navbar-links li a:hover {
+    background-color: orange;
+    color: white;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    list-style: none;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.dropdown-toggle:hover + .dropdown-menu,
+.dropdown-menu:hover {
+    display: block;
+}
+
+main {
+    flex: 1;
+}
+
+.footer {
+    text-align: center;
+    padding: 10px 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #6c757d;
+    font-size: 14px;
+}
+
+/* ===== Image ===== */
+td img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* ===== Cards ===== */
+.card-body .content {
+    flex: 1; /* Kolom kiri lebih besar */
+}
+
+.card-body .button-container {
+    flex: 0 0 auto; /* Kolom kanan hanya sebesar kontennya */
+    position: absolute;
+    bottom: 10px; /* Posisi tombol di pojok kanan bawah */
+    right: 10px;
+}
+
+.card-menu {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.card {
+    display: block;
+    text-align: center;
+    padding: 20px;
+    background-color: #fff; /* Background putih */
+    color: #333; /* Warna teks abu gelap */
+    text-decoration: none;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Text Styling for Cards */
+.card h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #007BFF; /* Warna biru */
+}
+
+.card p {
+    color: #555; /* Warna teks abu-abu */
+    font-size: 1rem;
+}
+
+.card-text-dark h2, .card-text-dark p {
+    color: #333; /* Warna teks abu gelap */
+}
+
+/* ===== Custom Modern Card (Persegi Panjang) ===== */
+/* Modern Card */
+.modern-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 235px; /* Tinggi lebih rendah untuk persegi panjang */
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Hover effect */
+.modern-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Overlay with gradient blur */
+.modern-card::after {
+    content: '';
+    position: absolute;
+    top: 50%; /* Mulai dari tengah */
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 50%, rgba(0, 0, 0, 0.8) 100%);
+    z-index: 1; /* Di bawah konten kartu */
+    pointer-events: none;
+}
+
+/* Modern Card Content */
+.modern-card-content {
+    position: relative;
+    z-index: 2;
+    padding: 15px;
+    color: white;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+/* Title */
+.modern-card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin: 0; /* Menghapus margin bawah */
+}
+
+/* Description */
+.modern-card-text {
+    font-size: 0.875rem;
+    margin: 0; /* Menghapus margin bawah */
+}
+
+/* Icon button */
+.modern-card-icon {
+    font-size: 1.5rem;
+    color: orange;
+    transition: transform 0.3s ease, color 0.3s ease;
+    margin-left: 10px; /* Memberi jarak dengan teks */
+    display: inline-flex;
+    align-items: center;
+}
+
+.modern-card-icon:hover {
+    color: white;
+    transform: translateX(5px); /* Efek animasi bergerak ke kanan */
+}
+
+/* ===== Styling: About ===== */
+.about-container {
+    padding: 2rem;
+    background-color: #f9f9f9;
+}
+
+.about-header {
+    margin-bottom: 2rem;
+}
+
+.about-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.about-header .subtitle {
+    font-size: 1.2rem;
+    color: #666;
+}
+
+.about-content h2 {
+    margin-top: 1.5rem;
+    font-size: 1.8rem;
+    color: #444;
+}
+
+.about-content p {
+    line-height: 1.6;
+    font-size: 1rem;
+    color: #555;
+}
+
+.social-links {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 1rem;
+}
+
+.social-links li {
+    display: inline-block;
+}
+
+.social-links a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.social-links a:hover {
+    text-decoration: underline;
+}
+
+/* ===== Styling: Story Mode ===== */
+.story-container, .minigame-container {
+    margin: 0 auto;
+    max-width: 800px;
+    text-align: center;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.story-header, .minigame-header {
+    margin-bottom: 20px;
+}
+
+.story-header h1, .minigame-header h1 {
+    font-size: 2rem;
+    color: #333;
+}
+
+.story-header p, .minigame-header p {
+    font-size: 1.2rem;
+    color: #555;
+}
+
+.story-content, .minigame-content {
+    margin: 20px 0;
+}
+
+.story-options, .minigame-list {
+    list-style: none;
+    padding: 0;
+}
+
+.story-options li, .minigame-list li {
+    margin: 10px 0;
+}
+
+.story-options a, .minigame-list a {
+    text-decoration: none;
+    color: #007BFF;
+    font-weight: bold;
+}
+
+.story-options a:hover, .minigame-list a:hover {
+    color: #0056b3;
+}
+
+.story-footer a, .minigame-footer a {
+    text-decoration: none;
+    color: #28a745;
+    font-weight: bold;
+}
+
+.story-footer a:hover, .minigame-footer a:hover {
+    color: #1e7e34;
+}
+
+
+/* General Styling for Minecraft Page */
+.minecraft-banner {
+    text-align: center;
+    padding: 20px;
+    background-color: #f0f0f0; /* Background abu-abu terang */
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+/* Text Color for Banner */
+.banner-text-dark h1, .banner-text-dark p {
+    color: #333; /* Warna teks abu gelap */
+}
+
+
+/*
+KARTU
+
+.photo-frame {
+    margin-top: 20px;
+    border: 5px solid #ddd;
+    padding: 10px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+    width: 300px;
+    height: 200px;
+    display: flex;
+    text-align: left;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+.photo-frame:hover {
+    transform: scale(1.05);
+}
+
+.photo-frame-img {
+    border: 3px solid #ccc;
+    padding: 5px;
+    background-color: #f8f8f8;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+KARTU DETAIL SHOW
+
+.photo-frame-detail {
+    border: none;
+    background-color: transparent;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+}
+
+.photo-frame-detail-img {
+    margin-top: 10px;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 200px;
+    object-fit: contain;
+}
+
+.stats-box {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    margin-top: 10px;
+}
+
+.form-label, .container{
+    color: white;
+}
+
+.detail-img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 15px;
+    position: relative;
+} */
