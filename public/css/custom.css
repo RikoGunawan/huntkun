@@ -9,7 +9,7 @@ html, body {
     height: 100%;
     font-family: 'Titillium Web', sans-serif; /* Font default untuk seluruh halaman */
     font-size: 1rem; /* Default ukuran teks untuk body */
-    background-image: url('../images/huntkun_background.png');
+    background-image: url('../images/huntkun_background2.png');
     background-size: cover; /* Menutupi seluruh halaman */
     background-position: center; /* Posisi gambar di tengah */
     background-repeat: no-repeat; /* Tidak mengulang gambar */
@@ -29,7 +29,7 @@ h1 {
 h2 {
     font-family: 'Titillium Web', sans-serif;  /* Menetapkan font */
     font-weight: bold;  /* Menetapkan ketebalan font */
-    font-size: 4rem;  /* Ukuran font lebih kecil dari h1 */
+    font-size: 2.5rem;  /* Ukuran font lebih kecil dari h1 */
     line-height: 1.2;  /* Mengatur jarak antar baris */
 }
 
@@ -65,7 +65,7 @@ p {
     /* background-image: url('../images/banner.jpg'); */
     background-size: cover;
     background-position: center;
-    height: 30vh;
+    height: 25vh;
     text-align: center;
     color: white;
     display: flex;
@@ -109,7 +109,6 @@ p {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    gap: 15px;
     margin-left: auto;
 }
 
@@ -417,15 +416,121 @@ td img {
 .minecraft-banner {
     text-align: center;
     padding: 20px;
-    background-color: #f0f0f0; /* Background abu-abu terang */
+    background: rgba(0, 0, 0, 0.3); /* 50% transparansi */
     border-radius: 8px;
     margin-bottom: 20px;
+    color: white;
 }
 
+.minecraft-role {
+    text-align: left;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.3); /* 50% transparansi */
+    border-radius: 8px;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.minecraft-banner-white {
+    text-align: center;
+    padding: 20px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(245, 245, 245, 0.8));
+    border-radius: 8px;
+    margin-bottom: 20px;
+    color: #222; /* Teks sedikit lebih gelap */
+}
+
+
+
 /* Text Color for Banner */
-.banner-text-dark h1, .banner-text-dark p {
+.banner-text-dark h1 {
     color: #333; /* Warna teks abu gelap */
 }
+
+
+/* Tool Button Styling ============================================================ */
+
+.tool-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #ffffff;
+    background-color: #007bff;
+    border: 1px solid #007bff;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+}
+
+.tool-button img.tool-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.tool-button:hover {
+    background-color: #0056b3;
+    color: #ffffff;
+    transform: scale(1.05);
+}
+
+.tool-button.btn-primary {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+/* CARD Styling ============================================================ */
+
+.location-card {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column; /* Agar konten diatur secara vertikal */
+    height: 100%; /* Menjamin kartu memiliki tinggi seragam */
+}
+
+.location-card img {
+    width: 100%;
+    aspect-ratio: 16 / 9; /* Tetapkan rasio aspek untuk gambar */
+    object-fit: cover; /* Menyesuaikan gambar tanpa distorsi */
+    display: block;
+}
+
+.location-card .card-body {
+    padding: 10px;
+    text-align: center;
+    background-color: #f9f9f9;
+    flex-grow: 1; /* Membuat bagian teks memenuhi ruang kosong */
+}
+
+.location-card .card-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 3px;
+    color: #333;
+}
+
+.location-card .card-text {
+    font-size: 14px;
+    color: #555;
+}
+
+.location-card:hover {
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+    transform: scale(1.02);
+}
+
+.location-card.border-success {
+    border-color: #28a745;
+}
+
+
 
 
 /*

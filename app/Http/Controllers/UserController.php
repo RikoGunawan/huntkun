@@ -10,7 +10,7 @@ class UserController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        // $this->middleware('admin')->except('show');
+        // $this->middleware('minecraft.admin')->except('show');
     }
     /**
      * Display a listing of the resource.

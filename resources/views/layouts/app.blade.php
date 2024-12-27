@@ -18,7 +18,8 @@
     <!-- Styles -->
     <style>
         body {
-            font-family: 'Microsoft Sans Serif', sans-serif; /* Default Font */
+            font-family: 'Microsoft Sans Serif', sans-serif;
+            /* Default Font */
         }
     </style>
 
@@ -38,12 +39,25 @@
             </a>
 
             <ul class="navbar-links navbar-left">
-                <li><a href="{{ route('users.index') }}" @if (request()->routeIs('users.*')) class="active" @endif>Users</a></li>
-                <li><a href="{{ route('minecraft.index') }}" @if (request()->routeIs('minecraft.*')) class="active" @endif>Minecraft</a></li>
-                <li><a href="{{ route('doomsday.index') }}" @if (request()->routeIs('doomsday.*')) class="active" @endif>Doomsday</a></li>
+                <li><a href="{{ route('users.index') }}"
+                        @if (request()->routeIs('users.*')) class="active" @endif>Users</a></li>
+                <li><a href="{{ route('minecraft.index') }}"
+                        @if (request()->routeIs('minecraft.*')) class="active" @endif>Minecraft</a></li>
+                <li><a href="{{ route('doomsday.index') }}"
+                        @if (request()->routeIs('doomsday.*')) class="active" @endif>Doomsday</a></li>
             </ul>
 
             <ul class="navbar-links navbar-right">
+                @auth
+                    @if (Auth::user()->is_admin)
+                        <li><a href="{{ route('minecraft.admin.roles.index') }}"
+                                @if (request()->routeIs('minecraft.admin.roles.index*')) class="active" @endif>Roles</a></li>
+                        <li><a href="{{ route('minecraft.admin.tools.index') }}"
+                                @if (request()->routeIs('minecraft.admin.tools.index*')) class="active" @endif>Tools</a></li>
+                        <li><a href="{{ route('minecraft.admin.locations.index') }}"
+                                @if (request()->routeIs('minecraft.admin.locations.index.*')) class="active" @endif>Locations</a></li>
+                    @endif
+                @endauth
                 @guest
                     @if (Route::has('login'))
                         <li><a href="{{ route('login') }}">Login</a></li>

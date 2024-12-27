@@ -14,6 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+use App\Http\Controllers\RoleController;
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::apiResource('roles', RoleController::class);
+// Route::put('/roles/{role}', [RoleController::class, 'update']);
+
