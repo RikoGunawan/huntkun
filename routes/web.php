@@ -43,7 +43,6 @@ Route::middleware('auth')->prefix('minecraft/admin')->as('minecraft.admin.')->gr
     Route::resource('locations', LocationController::class);  // CRUD untuk locations
 });
 
-
 // Doomsday Routes
 Route::view('/doomsday', 'doomsday.index')->name('doomsday.index');
 

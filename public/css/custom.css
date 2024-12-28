@@ -55,6 +55,12 @@ p {
     padding: 1rem;
 }
 
+.container-normal {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
 #app {
     flex: 1;
     display: flex;

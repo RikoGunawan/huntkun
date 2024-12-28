@@ -107,6 +107,7 @@ export default {
                 })
                 .catch(error => {
                     console.error('Error:', error.response?.data || error.message);
+                    alert('Terjadi kesalahan: ' + error.response?.data.message);
                 });
         },
         editRole() {
@@ -133,6 +134,7 @@ export default {
                 })
                 .catch(error => {
                     console.error('Error:', error.response?.data || error.message);
+                    alert('Terjadi kesalahan: ' + error.response?.data.message);
                 });
         },
         submitForm() {

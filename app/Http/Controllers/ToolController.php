@@ -5,21 +5,37 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Tool;
 use App\Models\Role;
+use Illuminate\Support\Facades\Storage;
 
 class ToolController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $tools = Tool::with('role')->get();
-        return view('minecraft.admin.tools.index', compact('tools'));
+        // Jika permintaan datang dari API, kembalikan JSON
+        if ($request->is('api/*')) {
+            $tools = Tool::with('role')->get();
+            return response()->json($tools); // Return as JSON
+        }
+
+        // Jika permintaan datang dari rute admin, kembalikan view
+        if ($request->is('minecraft/admin/*')) {
+            $roles = Role::all();
+            return view('minecraft.admin.tools.index');
+        }
+
+        // Default respons untuk keamanan
+        abort(404, 'Not Found');
     }
 
-    public function create()
+    // Get roles for dropdown
+    public function roles()
     {
         $roles = Role::all();
-        return view('minecraft.admin.tools.create', compact('roles'));
+        return response()->json($roles); // Return as JSON
     }
 
+
+    // Store a new tool
     public function store(Request $request)
     {
         $request->validate([
@@ -34,17 +50,12 @@ class ToolController extends Controller
             $data['icon'] = $request->file('icon')->store('tools', 'public');
         }
 
-        Tool::create($data);
+        $tool = Tool::create($data);
 
-        return redirect()->route('minecraft.admin.tools.index')->with('success', 'Tool created successfully!');
+        return response()->json($tool, 201); // Return created tool
     }
 
-    public function edit(Tool $tool)
-    {
-        $roles = Role::all();
-        return view('minecraft.admin.tools.edit', compact('tool', 'roles'));
-    }
-
+    // Update an existing tool
     public function update(Request $request, Tool $tool)
     {
         $request->validate([
@@ -56,22 +67,27 @@ class ToolController extends Controller
 
         $data = $request->only(['role_id', 'name', 'modifier']);
         if ($request->hasFile('icon')) {
+            // Delete old icon if exists
+            if ($tool->icon) {
+                Storage::disk('public')->delete($tool->icon);
+            }
             $data['icon'] = $request->file('icon')->store('tools', 'public');
         }
 
         $tool->update($data);
 
-        return redirect()->route('minecraft.admin.tools.index')->with('success', 'Tool updated successfully!');
+        return response()->json($tool); // Return updated tool
     }
 
+    // Delete a tool
     public function destroy(Tool $tool)
     {
         if ($tool->icon) {
-            \Illuminate\Support\Facades\Storage::disk('public')->delete($tool->icon);
+            Storage::disk('public')->delete($tool->icon);
         }
 
         $tool->delete();
 
-        return redirect()->route('minecraft.admin.tools.index')->with('success', 'Tool deleted successfully!');
+        return response()->json(['message' => 'Tool deleted successfully.'], 200);
     }
 }

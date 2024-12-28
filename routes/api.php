@@ -23,3 +23,21 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::apiResource('roles', RoleController::class);
 // Route::put('/roles/{role}', [RoleController::class, 'update']);
 
+use App\Http\Controllers\ToolController;
+use App\Http\Controllers\LocationController;
+
+
+    Route::get('/tools', [ToolController::class, 'index']);
+    Route::get('/roles', [ToolController::class, 'roles']);
+    Route::post('/tools', [ToolController::class, 'store']);
+    Route::put('/tools/{tool}', [ToolController::class, 'update']);
+    Route::delete('/tools/{tool}', [ToolController::class, 'destroy']);
+
+    Route::get('/locations', [LocationController::class, 'index']);
+    Route::post('/locations', [LocationController::class, 'store']);
+    Route::put('/locations/{location}', [LocationController::class, 'update']);
+    Route::delete('/locations/{location}', [LocationController::class, 'destroy']);
+
+
+
+

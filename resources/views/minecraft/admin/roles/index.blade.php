@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container text-white">
+    <div class="container-normal text-white">
         <div class="d-flex justify-content-between align-items-center">
             <h1>Roles</h1>
             <create-edit-role-modal ref="createEditModal"></create-edit-role-modal>
