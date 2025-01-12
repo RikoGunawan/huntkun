@@ -15,7 +15,7 @@
         <div class="row">
             <!-- Minecraft Card -->
             <div class="col-md-4">
-                <a href="/minecraft" class="modern-card" style="background-image: url('{{ asset('images/mc_game.jpg') }}');">
+                <a href="/minecraft" class="modern-card" style="background-image: url('{{ asset('storage/images/mc_game.jpg') }}');">
                     <div class="modern-card-content">
                         <div>
                             <h5 class="modern-card-title">Minecraft</h5>
@@ -29,7 +29,7 @@
             </div>
             <!-- Doomsday Card -->
             <div class="col-md-4">
-                <a href="/doomsday" class="modern-card" style="background-image: url('{{ asset('images/doomsday_bduck.jpg') }}');">
+                <a href="/doomsday" class="modern-card" style="background-image: url('{{ asset('storage/images/doomsday_bduck.jpg') }}');">
                     <div class="modern-card-content">
                         <div>
                             <h5 class="modern-card-title">Doomsday</h5>
@@ -43,7 +43,7 @@
             </div>
             <!-- About Youtuber Card -->
             <div class="col-md-4">
-                <a href="/about" class="modern-card" style="background-image: url('{{ asset('images/about_me.jpg') }}');">
+                <a href="/about" class="modern-card" style="background-image: url('{{ asset('storage/images/about_me.jpg') }}');">
                     <div class="modern-card-content">
                         <div>
                             <h5 class="modern-card-title">About Hunt Kun</h5>
@@ -57,7 +57,7 @@
             </div>
             {{-- <div class="col-md-4">
                 <div class="card">
-                    <img src="{{ asset('images/about-card.jpg') }}" class="card-img-top" alt="About">
+                    <img src="{{ asset('storage/images/about-card.jpg') }}" class="card-img-top" alt="About">
                     <div class="card-body">
                         <h5 class="card-title">About Hunt Kun</h5>
                         <p class="card-text">Learn more about the creator and his YouTube channel!</p>

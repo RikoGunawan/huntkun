@@ -41,19 +41,25 @@ class ToolController extends Controller
         $request->validate([
             'role_id' => 'required|exists:roles,id',
             'name' => 'required|string|max:255',
-            'icon' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'icon' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
             'modifier' => 'required|numeric|min:0',
         ]);
 
+        // Ambil data yang diinginkan dari request
         $data = $request->only(['role_id', 'name', 'modifier']);
+
+        // Simpan file icon jika diunggah
         if ($request->hasFile('icon')) {
-            $data['icon'] = $request->file('icon')->store('tools', 'public');
+            // Simpan file di 'storage/app/public/images/tools'
+            $data['icon'] = $request->file('icon')->store('images/tools', 'public');
         }
 
+        // Simpan data Tool beserta path file
         $tool = Tool::create($data);
 
-        return response()->json($tool, 201); // Return created tool
+        return response()->json($tool, 201); // Kembalikan respons JSON
     }
+
 
     // Update an existing tool
     public function update(Request $request, Tool $tool)
@@ -61,7 +67,7 @@ class ToolController extends Controller
         $request->validate([
             'role_id' => 'required|exists:roles,id',
             'name' => 'required|string|max:255',
-            'icon' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'icon' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
             'modifier' => 'required|numeric|min:0',
         ]);
 
@@ -71,7 +77,7 @@ class ToolController extends Controller
             if ($tool->icon) {
                 Storage::disk('public')->delete($tool->icon);
             }
-            $data['icon'] = $request->file('icon')->store('tools', 'public');
+            $data['icon'] = $request->file('icon')->store('images/tools', 'public');
         }
 
         $tool->update($data);

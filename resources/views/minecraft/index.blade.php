@@ -14,7 +14,7 @@
         <div class="row" style="justify-content: center;">
             <!-- Minecraft Card -->
             <div class="col-md-4">
-                <a href="{{ route('minecraft.story.index') }}" class="modern-card" style="background-image: url('{{ asset('images/story_mode.jpg') }}');">
+                <a href="{{ route('minecraft.story.index') }}" class="modern-card" style="background-image: url('{{ asset('storage/images/story_mode.jpg') }}');">
                     <div class="modern-card-content">
                         <div>
                             <h5 class="modern-card-title">Story Mode</h5>
@@ -26,7 +26,7 @@
             <div class="col-md-2">
             </div>
             <div class="col-md-4">
-                <a href="{{ route('minecraft.minigame') }}" class="modern-card" style="background-image: url('{{ asset('images/roles/redstone_engineer.jpg') }}');">
+                <a href="{{ route('minecraft.minigame') }}" class="modern-card" style="background-image: url('{{ asset('storage/images/roles/redstone_engineer.jpg') }}');">
                     <div class="modern-card-content">
                         <div>
                             <h5 class="modern-card-title">Minigames</h5>

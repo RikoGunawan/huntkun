@@ -9,7 +9,7 @@ html, body {
     height: 100%;
     font-family: 'Titillium Web', sans-serif; /* Font default untuk seluruh halaman */
     font-size: 1rem; /* Default ukuran teks untuk body */
-    background-image: url('../images/huntkun_background2.png');
+    background-image: url('/storage/images//huntkun_background2.png');
     background-size: cover; /* Menutupi seluruh halaman */
     background-position: center; /* Posisi gambar di tengah */
     background-repeat: no-repeat; /* Tidak mengulang gambar */
@@ -68,7 +68,7 @@ p {
 }
 
 #banner {
-    /* background-image: url('../images/banner.jpg'); */
+    /* background-image: url('../storage/images/banner.jpg'); */
     background-size: cover;
     background-position: center;
     height: 25vh;
@@ -488,8 +488,61 @@ td img {
 }
 
 /* CARD Styling ============================================================ */
+.location-cards-wrapper {
+    position: relative; /* Untuk memposisikan panah */
+    overflow: hidden; /* Sembunyikan scrollbar */
+    margin: 20px 0;
+}
 
+.location-cards {
+    display: flex;
+    gap: 10px;
+    overflow-x: scroll; /* Izinkan scroll horizontal */
+    scroll-behavior: smooth; /* Gulir halus */
+    -ms-overflow-style: none; /* Hilangkan scrollbar di IE */
+    scrollbar-width: none; /* Hilangkan scrollbar di Firefox */
+}
+
+/* Sembunyikan scrollbar di Chrome, Opera, Safari */
+.location-cards::-webkit-scrollbar {
+    display: none;
+}
+
+.scroll-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.scroll-arrow-left {
+    left: 10px;
+}
+
+.scroll-arrow-right {
+    right: 10px;
+}
+
+.scroll-arrow:hover {
+    opacity: 1;
+}
+
+/* Styling untuk kartu */
 .location-card {
+    flex: 0 0 40%; /* Set kartu lebar default 30% */
+    margin-right: 15px;
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
@@ -497,22 +550,25 @@ td img {
     transition: all 0.3s ease;
     cursor: pointer;
     display: flex;
-    flex-direction: column; /* Agar konten diatur secara vertikal */
-    height: 100%; /* Menjamin kartu memiliki tinggi seragam */
+    flex-direction: column;
 }
 
 .location-card img {
     width: 100%;
-    aspect-ratio: 16 / 9; /* Tetapkan rasio aspek untuk gambar */
-    object-fit: cover; /* Menyesuaikan gambar tanpa distorsi */
-    display: block;
+    object-fit: cover;
+    aspect-ratio: 16 / 9;
 }
 
 .location-card .card-body {
     padding: 10px;
     text-align: center;
     background-color: #f9f9f9;
-    flex-grow: 1; /* Membuat bagian teks memenuhi ruang kosong */
+    flex-grow: 1;
+}
+
+.location-card:hover {
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+    transform: scale(1.02);
 }
 
 .location-card .card-title {
@@ -527,91 +583,8 @@ td img {
     color: #555;
 }
 
-.location-card:hover {
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
-    transform: scale(1.02);
-}
-
 .location-card.border-success {
     border-color: #28a745;
 }
 
 
-
-
-/*
-KARTU
-
-.photo-frame {
-    margin-top: 20px;
-    border: 5px solid #ddd;
-    padding: 10px;
-    background-color: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s;
-    width: 300px;
-    height: 200px;
-    display: flex;
-    text-align: left;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 50px;
-}
-
-.photo-frame:hover {
-    transform: scale(1.05);
-}
-
-.photo-frame-img {
-    border: 3px solid #ccc;
-    padding: 5px;
-    background-color: #f8f8f8;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-KARTU DETAIL SHOW
-
-.photo-frame-detail {
-    border: none;
-    background-color: transparent;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin: 0 auto;
-}
-
-.photo-frame-detail-img {
-    margin-top: 10px;
-    width: auto;
-    height: auto;
-    max-width: 100%;
-    max-height: 200px;
-    object-fit: contain;
-}
-
-.stats-box {
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    padding: 10px;
-    background-color: rgba(255, 255, 255, 0.8);
-    margin-top: 10px;
-}
-
-.form-label, .container{
-    color: white;
-}
-
-.detail-img {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-}
-
-.card-body {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding: 15px;
-    position: relative;
-} */

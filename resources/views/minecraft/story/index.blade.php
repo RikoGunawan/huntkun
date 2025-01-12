@@ -9,7 +9,7 @@
         <div class="row" style="justify-content: center;">
             @foreach ($roles as $role)
                 <div class="col-md-3">
-                    <a href="{{ route('minecraft.story.show', $role->id) }}" class="modern-card" style="background-image: url('{{ asset('images/' . $role->image) }}');">
+                    <a href="{{ route('minecraft.story.show', $role->id) }}" class="modern-card" style="background-image: url('{{ asset('storage/images/' . $role->image) }}');">
                         <div class="modern-card-content">
                             <div>
                                 <h5 class="modern-card-title">{{ $role->name }}</h5>

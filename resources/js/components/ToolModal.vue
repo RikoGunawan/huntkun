@@ -15,7 +15,7 @@
                 </div>
                 <div class="form-group">
                     <label>Modifier</label>
-                    <input v-model="form.modifier" type="number" class="form-control" required />
+                    <input v-model="form.modifier" type="number" step="0.01" class="form-control" required />
                 </div>
                 <div class="form-group">
                     <label>Icon</label>

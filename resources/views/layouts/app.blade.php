@@ -55,7 +55,7 @@
                         <li><a href="{{ route('minecraft.admin.tools.index') }}"
                                 @if (request()->routeIs('minecraft.admin.tools.index*')) class="active" @endif>Tools</a></li>
                         <li><a href="{{ route('minecraft.admin.locations.index') }}"
-                                @if (request()->routeIs('minecraft.admin.locations.index.*')) class="active" @endif>Locations</a></li>
+                                @if (request()->routeIs('minecraft.admin.locations.index*')) class="active" @endif>Locations</a></li>
                     @endif
                 @endauth
                 @guest

@@ -18,11 +18,11 @@
                     @if ($tools->isEmpty())
                         <p class="text-muted">Belum ada alat yang tersedia untuk role ini.</p>
                     @else
-                        <div class="d-flex justify-content gap-3">
+                        <div class="d-flex flex-wrap gap-3">
                             @foreach ($tools as $tool)
                                 <button class="tool-button" data-modifier="{{ $tool->modifier }}"
                                     data-tool-id="{{ $tool->id }}">
-                                    <img src="{{ asset('images/' . $tool->icon) }}" alt="{{ $tool->name }}"
+                                    <img src="{{ asset('storage/images/' . $tool->icon) }}" alt="{{ $tool->name }}"
                                         class="tool-icon">
                                     {{ $tool->name }}
                                 </button>
@@ -32,28 +32,31 @@
                 </div>
             </div>
             <div class="col-md-6">
+                <h4>Pilih Lokasi</h4>
                 <!-- Location Cards -->
-                <div class="location-cards my-4">
-                    <h4>Pilih Lokasi</h4>
-                    @if ($locations->isEmpty())
-                        <p class="text-muted">Belum ada lokasi yang tersedia untuk role ini.</p>
-                    @else
-                        <div class="row">
-                            @foreach ($locations as $location)
-                                <div class="col">
-                                    <div class="location-card" data-location-id="{{ $location->id }}"
-                                        data-base-time="{{ $location->base_time }}" data-reward="{{ $location->reward }}">
-                                        <img src="{{ asset('images/' . $location->image) }}" alt="{{ $location->name }}">
-                                        <div class="card-body">
-                                            <h5 class="card-title">{{ $location->name }}</h5>
-                                            <p class="card-text">Estimasi waktu dasar: {{ $location->base_time }} menit</p>
-                                        </div>
-                                    </div>
+                <div class="location-cards-wrapper">
+                    <!-- Tombol panah kiri -->
+                    <button class="scroll-arrow scroll-arrow-left" onclick="scrollLeft()">&#9664;</button>
+
+                    <!-- Container lokasi -->
+                    <div class="location-cards">
+                        @foreach ($locations as $location)
+                            <div class="location-card" data-location-id="{{ $location->id }}"
+                                data-base-time="{{ $location->base_time }}" data-reward="{{ $location->reward }}">
+                                <img src="{{ asset('storage/images/' . $location->image) }}" alt="{{ $location->name }}">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ $location->name }}</h5>
+                                    <p class="card-text">Estimasi waktu dasar: {{ $location->base_time }} menit</p>
                                 </div>
-                            @endforeach
-                        </div>
-                    @endif
+                            </div>
+                        @endforeach
+                    </div>
+
+                    <!-- Tombol panah kanan -->
+                    <button class="scroll-arrow scroll-arrow-right" onclick="scrollRight()">&#9654;</button>
                 </div>
+
+
 
                 <div class = "row">
                     <!-- Estimation Result -->
@@ -72,6 +75,43 @@
         </div>
 
         <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const locationCardsContainer = document.querySelector('.location-cards');
+
+                // Fungsi gulir ke kiri
+                function scrollLeft() {
+                    locationCardsContainer.scrollBy({
+                        left: -300,
+                        behavior: 'smooth'
+                    });
+                }
+
+                // Fungsi gulir ke kanan
+                function scrollRight() {
+                    locationCardsContainer.scrollBy({
+                        left: 300,
+                        behavior: 'smooth'
+                    });
+                }
+
+                // Tambahkan event listener untuk scroll horizontal dengan roda mouse
+                locationCardsContainer.addEventListener('wheel', (event) => {
+                    event.preventDefault();
+                    locationCardsContainer.scrollBy({
+                        left: event.deltaY < 0 ? -300 : 300,
+                        behavior: 'smooth'
+                    });
+                });
+
+                // Menambahkan event listeners untuk tombol panah kiri dan kanan
+                const scrollLeftButton = document.querySelector('.scroll-arrow-left');
+                const scrollRightButton = document.querySelector('.scroll-arrow-right');
+
+                scrollLeftButton.addEventListener('click', scrollLeft);
+                scrollRightButton.addEventListener('click', scrollRight);
+            });
+
+
             document.addEventListener('DOMContentLoaded', function() {
                 const toolButtons = document.querySelectorAll('.tool-button');
                 const locationCards = document.querySelectorAll('.location-card');

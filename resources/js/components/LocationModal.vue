@@ -23,7 +23,11 @@
                 </div>
                 <div class="form-group">
                     <label>Image</label>
-                    <input type="file" @change="handleFile" class="form-control" />
+                    <select v-model="form.image" class="form-control">
+                        <option v-for="image in images" :key="image" :value="image">
+                            {{ image }}
+                        </option>
+                    </select>
                 </div>
                 <br>
                 <button type="submit" class="btn btn-success">{{ location ? "Update" : "Save" }}</button>
@@ -46,45 +50,50 @@ export default {
             role_id: "",
             base_time: "",
             reward: "",
-            image: null,
+            image: "",
         });
-        const roles = ref([]);
 
+        const roles = ref([]);
+        const images = ref([]); // List of images from the server
+
+        // Fetch roles from the server
         const fetchRoles = () => {
             axios.get("/api/roles").then((response) => {
                 roles.value = response.data;
             });
         };
 
-        const handleFile = (event) => {
-            form.value.image = event.target.files[0];
+        // Fetch images from the server
+        const fetchImages = () => {
+            axios.get("/api/storage/images/locations").then((response) => {
+                images.value = response.data;
+            });
         };
 
         const saveLocation = () => {
-            const formData = new FormData();
-            for (const key in form.value) {
-                if (key === "image" && !form.value[key]) continue;
-                formData.append(key, form.value[key]);
-            }
+            const payload = { ...form.value };
 
             if (props.location) {
-                formData.append("_method", "PUT");
+                payload._method = "PUT";
             }
+
+            console.log("Payload Debug:", payload); // Debug payload sebelum dikirim
 
             const url = props.location ? `/api/locations/${props.location.id}` : "/api/locations";
             const method = props.location ? "post" : "post";
 
-            axios[method](url, formData)
+            axios[method](url, payload)
                 .then(() => {
                     emit("save");
                     emit("close");
                 })
                 .catch((error) => {
                     console.error(error.response?.data.errors);
-                    alert('Error: ' + error.response?.data.message);
+                    alert("Terjadi kesalahan: " + error.response?.data.message);
                 });
         };
 
+        // Watch for location changes and set form data
         watch(
             () => props.location,
             (newLocation) => {
@@ -94,18 +103,22 @@ export default {
                         role_id: newLocation.role_id || "",
                         base_time: newLocation.base_time || "",
                         reward: newLocation.reward || "",
-                        image: null,
+                        image: newLocation.image || "",
                     };
                 } else {
-                    form.value = { name: "", role_id: "", base_time: "", reward: "", image: null };
+                    form.value = { name: "", role_id: "", base_time: "", reward: "", image: "" };
                 }
             },
             { immediate: true }
         );
 
-        onMounted(fetchRoles);
+        // Fetch data on mount
+        onMounted(() => {
+            fetchRoles();
+            fetchImages();
+        });
 
-        return { form, roles, handleFile, saveLocation };
+        return { form, roles, images, saveLocation };
     },
 };
 </script>
@@ -130,4 +143,3 @@ export default {
     width: 500px;
 }
 </style>
-

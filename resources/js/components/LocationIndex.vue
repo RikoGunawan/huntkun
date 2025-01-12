@@ -20,7 +20,7 @@
                 <tr v-for="(location, index) in locations" :key="location.id">
                     <td>{{ index + 1 }}</td>
                     <td>
-                        <img v-if="location.image" :src="'/images/' + location.image" class="img-thumbnail" style="width: 300px;" />
+                        <img v-if="location.image" :src="'/storage/images/' + location.image" class="img-thumbnail" style="width: 300px;" />
                     </td>
                     <td>{{ location.name }}</td>
                     <td>{{ location.role.name }}</td>
